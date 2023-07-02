@@ -1,0 +1,57 @@
+Linux commands:
+
+common commands:
+
+ls
+ls -la
+ls -lh
+
+cd 
+
+cp source_file_name destination_path
+cp raghu.txt /home/narghu
+
+cp -r source_folder_name destination_path
+cp -r /home/nraghu/nexus_data /home/nraghu/nexus_data_backup
+
+rm -fr file_path or folder_path
+rm -fr folder_path/*  --> not delete the folder and delete only content of that folder
+
+chmod -R 777 file or folder     (-R is used to apply the sub-directories also)
+chown -R user:group file or folder 
+
+apt-get update
+apt-get install
+
+cat /etc/*release*
+
+systemctl status service_name
+systemctl daemon-reload
+
+cat /etc/passwd   --> checking the users
+cat /etc/group    --> checking groups
+
+id  --> display the id alone with user
+
+ssh username@ip 
+
+scp -r file or folder username@ip:/destination_path
+scp -r username@ip:/source_file_or_folder_path destionation_path
+
+crt+alt+t  -> open the terminal
+
+crt+shit+t  --> new tag in that terminal
+crl+shit+n  --> new terminal window
+
+ 
+1)read command --> it is used to take the input from user
+
+syntax:
+read options varibale_name
+
+options --> -p  promt the message to user,read the value entered by user and store it varibale
+            -s  is used for security purpose. It is used to read the sensitive data. 
+                By using this option, the entered text won't appear in the terminal.
+            -r read input as raw data 
+            
+             

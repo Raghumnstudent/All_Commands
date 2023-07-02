@@ -1,0 +1,30 @@
+Helm commands:
+
+grep command
+
+commad | grep -i variable
+
+1)helm ls --> show all the helm charts with status
+
+2)kubectl get pods --> show all pods running on the kubernete cluster
+
+3)kubectl get pods | grep pod_name  --> show only related pods
+
+4)kubectl logs pod_name
+
+5)helm uninstall helm_chart_name --> uninstall the chart  (note get helm charts by helm ls command)
+
+6)First you must be one step back of chart.yaml file then execute helm install
+helm install helm_name(whatever_you_want) folder_name(that contain the chart.yaml)
+
+7)kubectl describe pod pod_name
+
+8)create the helm chart tar file
+         helm package path_to_chart_folder
+         
+         cat /var/lib/docker/containers/<container_id>
+        
+9)kubectl get jobs
+kubectl logs -n namespace cronjob/job_name
+
+

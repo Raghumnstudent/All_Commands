@@ -1,0 +1,20 @@
+Windows commands:
+
+The Batch file(.bat) file is a script file in windows, The commands executes in cmd are listed in file save with .bat extetion.
+It will execute all series of commands quickly
+
+echo commands:
+    echo Raghu > C:\windows\Users\nraghu\raghu.txt  --> create the raghu.txt with Raghu content
+    
+    echo %ENV_VARIABLE%  --> printing the value of env variable
+         ex: echo %HOMEDRIVE%, echo %HOMEPATH%, echo %username%
+         
+xcopy and copy command:
+
+if and else in bat file:
+
+set command:
+     set name="Raghu M N"  --> setting the env variable, valid till the that cmd open 
+     
+   
+

@@ -1,0 +1,109 @@
+docker impartant info:
+
+1)daemon.json file location --> /etc/docker/daemon.json
+if you did any changes related to daemon,run the below commands.
+systemctl daemon-reload
+systemctl restart docker 
+
+
+2)docker container logs details:
+
+To use the local driver as the default logging driver or json-file driver, set the log-driver and log-opt keys to appropriate values in the daemon.json file, which is located in /etc/docker/ on Linux hosts or C:\ProgramData\docker\config\daemon.json on Windows Server. For more about configuring Docker using daemon.json, see daemon.json.
+
+
+add the following data to configure the container log store in docker :
+
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3" 
+  }
+} 
+
+10m --> 10mb,3 files of that container to keep
+
+Restart Docker for the changes to take effect for newly created containers.
+
+log path for container is /var/lib/docker/containers/
+
+ex: /var/lib/docker/containers/container_id-json.log
+
+3)
+
+Docker commands:
+
+docker build -t  image_name   path_of_dockerfile  ---> creating image , t mean tagging image name
+	Example: docker build -t redis/server:latest  path_of_dockerfile 
+	Or
+	You must be in docker file folder
+	docker build -t image_name -f dockerfile_name . 
+
+
+docker run –name  name_of_container name_of_image   -->  creating the container
+
+docker run --rm -it image_name/id /bin/bash    ----> creating the container and opening the bash inside container,rm option is used to remove once i exit from bash terminal
+
+docker exec -it container_id/container_name  /bin/bash  --> opening the bash inside the container
+
+
+docker rm container_id/container_name ---> remove the container
+
+docker rmi image_id/image_name  -->  remove the image
+
+docker ps  --> show all running containers
+
+docker ps -a  --> show the all container
+
+docker images --> show all images
+
+docker run = docker create + docker start
+
+docker logs container_name/container_id  --> logs of container
+
+docker system prune  --> remote all stopped containers , all build cache, all network not used by at least one container, all dangling images
+
+
+docker stop container_id --> it take 10s to stop
+
+docker kill container_id --> it stop instantly shutdown all process  , use docker stop
+
+docker run redis -->  stating the redis server container
+
+
+open another terminal --> redis-cli  for communicating with redis terminal
+
+docker exec -it container_id command  --> go to inside of running container
+
+docker exec -it container_id sh  --> sh open the terminal inside the container
+
+commands processors ---> bash , powershell,  zsh,  sh
+
+docker run -it image_name sh --> creating the container and starting shell inside container
+
+docker cp path_of_file container_id:/path_to_copy  copy the file from local into inside your container
+
+example:
+docker cp ~/Desktop/to-be-copied.txt 135950565ad8:/to-be-copied.txt
+
+
+How you ship the docker image to another system?
+i)push it into your docker registry and pull it in target system
+
+  docker push registryname/imagename
+  docker pull registryname/imagename
+  
+  my registry account:
+  raghumn688@gmail.com
+  Malavalli@19
+  
+  image available in my registry
+  docker push raghumn/angular_details_app
+  
+ii)use docker save command 
+   In  your machine ---> docker save -o image.tar image
+   tranfer tat file into target system using FTP or SCP
+   in target machine run --> docker < load -i image.tar
+
+
+

@@ -1,0 +1,29 @@
+vim commands:
+
+syntanx:
+
+press y --> copy
+press p --> paste
+press d --> delete
+press u --> undo
+
+:set paste then press i  --> inseting the lot of lines from other file 
+
+shift+v  --> select the entire line\lines, then press y to copy, go to wherever you want, press p to paste
+
+=====================================================================
+cat > path_to_file/raghu.txt << EOF
+>Raghu
+>Ravi
+>Raju
+>EOF
+
+The above cat command will write Raghu Ravi Raju into raghu.txt with 3 lines, EOF presents End Of File
+=======================================================================
+
+
+
+ 
+
+
+
