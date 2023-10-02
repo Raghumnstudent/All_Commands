@@ -1,5 +1,6 @@
 Linux commands:
 
+=========================================================================================================== 
 common commands:
 
 ls
@@ -43,6 +44,7 @@ crt+alt+t  -> open the terminal
 crt+shit+t  --> new tag in that terminal
 crl+shit+n  --> new terminal window
 
+=========================================================================================================== 
  
 1)read command --> it is used to take the input from user
 
@@ -53,5 +55,30 @@ options --> -p  promt the message to user,read the value entered by user and sto
             -s  is used for security purpose. It is used to read the sensitive data. 
                 By using this option, the entered text won't appear in the terminal.
             -r read input as raw data 
-            
-             
+           
+=========================================================================================================== 
+
+2)head command  --> this is used print the beginning of file into standard output(means into terminal).
+By default it print the first 10 lines of line.
+
+syntax head options path_to_file
+
+options:
+-n NUM or --lines=NUM: Specifies the number of lines to display from the beginning of the file.
+-c NUM or --bytes=NUM: Displays the first NUM bytes of the file instead of lines.
+-q or --quiet or --silent: Suppresses the printing of headers when multiple files are specified.
+--help: Displays help information about the command.
+
+ex: head -n -1 raghu.txt  --> this will print the all content of file except last line.
+    head -n -2 raghu.txt  --> this will print the all content of file except last two lines.this is used in one of my ticket work.
+
+===========================================================================================================
+ 
+3)tail command  --> this is used print the last of file into standard output(means into terminal).
+By default it print the last 10 lines of line.
+
+-n NUM or --lines=NUM: Specifies the number of lines to display from the end of the file.
+-c NUM or --bytes=NUM: Displays the last NUM bytes of the file instead of lines.
+-f or --follow: Outputs appended data as the file grows (useful for monitoring log files).
+-q or --quiet or --silent: Suppresses the printing of headers when multiple files are specified.
+--help: Displays help information about the command.
