@@ -95,7 +95,6 @@ i)push it into your docker registry and pull it in target system
   
   my registry account:
   raghumn688@gmail.com
-  Malavalli@19
   
   image available in my registry
   docker push raghumn/angular_details_app
