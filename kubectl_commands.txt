@@ -1,3 +1,89 @@
+$ kubectl --help --> show all available commands and give the document link
+
+***
+Use the following syntax to run kubectl commands from your terminal 
+
+kubectl <command> <Type> <Name> <Flags>
+
+where command is commands supported from kubectl, we have different set of commands in each section.
+Type  --> mention the resource.
+Name --> Name of resource deployed in k8s cluster.
+Flags  --> means options are supported in the each command. options will vary for each command.
+
+kubectl controls the Kubernetes cluster manager.
+
+ Find more information at: https://kubernetes.io/docs/reference/kubectl/
+
+Basic Commands (Beginner):
+  create          Create a resource from a file or from stdin
+  expose          Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
+  run             Run a particular image on the cluster
+  set             Set specific features on objects
+
+Basic Commands (Intermediate):
+  explain         Get documentation for a resource
+  get             Display one or many resources
+  edit            Edit a resource on the server
+  delete          Delete resources by file names, stdin, resources and names, or by resources and label selector
+
+Deploy Commands:
+  rollout         Manage the rollout of a resource
+  scale           Set a new size for a deployment, replica set, or replication controller
+  autoscale       Auto-scale a deployment, replica set, stateful set, or replication controller
+
+Cluster Management Commands:
+  certificate     Modify certificate resources
+  cluster-info    Display cluster information
+  top             Display resource (CPU/memory) usage
+  cordon          Mark node as unschedulable
+  uncordon        Mark node as schedulable
+  drain           Drain node in preparation for maintenance
+  taint           Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe        Show details of a specific resource or group of resources
+  logs            Print the logs for a container in a pod
+  attach          Attach to a running container
+  exec            Execute a command in a container
+  port-forward    Forward one or more local ports to a pod
+  proxy           Run a proxy to the Kubernetes API server
+  cp              Copy files and directories to and from containers
+  auth            Inspect authorization
+  debug           Create debugging sessions for troubleshooting workloads and nodes
+  events          List events
+
+Advanced Commands:
+  diff            Diff the live version against a would-be applied version
+  apply           Apply a configuration to a resource by file name or stdin
+  patch           Update fields of a resource
+  replace         Replace a resource by file name or stdin
+  wait            Experimental: Wait for a specific condition on one or many resources
+  kustomize       Build a kustomization target from a directory or URL
+
+Settings Commands:
+  label           Update the labels on a resource
+  annotate        Update the annotations on a resource
+  completion      Output shell completion code for the specified shell (bash, zsh, fish, or powershell)
+
+Subcommands provided by plugins:
+
+Other Commands:
+  api-resources   Print the supported API resources on the server
+  api-versions    Print the supported API versions on the server, in the form of "group/version"
+  config          Modify kubeconfig files
+  plugin          Provides utilities for interacting with plugins
+  version         Print the client and server version information
+
+Usage:
+  kubectl [flags] [options]
+
+Use "kubectl <command> --help" for more information about a given command.
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+Above listed the all command available in kubectl, need to learn commands, mainly focus on Basic,deploy and Troubledshooting command.
+
+==============================================================================================================
+
 1) kubectl create: is very strong command and used to create the following kubernetes resources from CLI.
 
 $ kubectl create -f resouce.yaml  --> command to create kubernetes resource using yaml file
@@ -76,6 +162,62 @@ $ kubectl exec my_service -- data  --> execute the data command in first pod of 
 
 ==========================================================================================================
 
-5)kubectl log
+5)kubectl logs : is used to print the logs for a container in a pod or specified resource. If the pod has only one container, the container name is
+optional.
 
-6)kubectl describe
+$ kubectl logs --help  --> get the help for the command.
+
+Ex:
+$ kubectl logs my_nginx  --> print the log of single container  in my_nginx pod.
+$ kubectl logs my_nginx --all-container=true --> print all containers log of my_nginx pod
+$ kubectl logs -f -l app=nginx my_nginx --all-containers=true  --> Begin streaming the logs from all containers in pods defined by label app=nginx
+$ kubectl logs -f -c ruby web-1 --> Begin streaming the logs of the ruby container in pod web-1
+
+$ kubectl logs --tail=20 nginx ---> Display only the most recent 20 lines of output in pod nginx
+
+==========================================================================================================
+
+6)kubectl describe : used to get the details of specific resouce or group of resources.
+
+kubectl describe --help  --> get the help for command
+
+Ex:
+$ kubectl describe pod name_of_pod  --> describe pod
+$ kubectl describe pods -l app=nginx --> describe all pods defined by the label app=nginx
+$ kubectl describe pods replication_controller_name  ---> will describe pods which are created from mentioned replication controller.
+
+==========================================================================================================
+
+7)kubectl expose : Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
+
+$ kubectl expose --help
+
+Ex:
+$ kubectl expose deployment name_of_deployment --port=7800  --> create service for mentioned deployment and open the 7800 port in service ip.
+
+==========================================================================================================
+
+8)kubectl scale : set a new size for a deployment, replica set, replication controller, or stateful set.
+
+ Scale also allows users to specify one or more preconditions for the scale action.
+
+ If --current-replicas or --resource-version is specified, it is validated before the scale is attempted, and it is
+guaranteed that the precondition holds true when the scale is sent to the server.
+
+Examples:
+  # Scale a replica set named 'foo' to 3
+  kubectl scale --replicas=3 rs/foo
+  
+  # Scale a resource identified by type and name specified in "foo.yaml" to 3
+  kubectl scale --replicas=3 -f foo.yaml
+  
+  # If the deployment named mysql's current size is 2, scale mysql to 3
+  kubectl scale --current-replicas=2 --replicas=3 deployment/mysql
+  
+  # Scale multiple replication controllers
+  kubectl scale --replicas=5 rc/example1 rc/example2 rc/example3
+  
+  # Scale stateful set named 'web' to 3
+  kubectl scale --replicas=3 statefulset/web
+
+==========================================================================================================
